@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+import axios, { AxiosResponse } from 'axios';
 import { Searchbar } from './Searchbar';
+import { Results } from "./Results";
 
-// OMDb api
-// http://www.omdbapi.com/?i=tt3896198&apikey=a327f185
 export interface MovieProps {
   Title: string;
   Year: string;
@@ -12,16 +11,31 @@ export interface MovieProps {
   Poster: string;
 }
 
-interface MoviesListProps extends Array<MovieProps> { }
+export interface MoviesListProps extends Array<MovieProps> { }
 
 export default function App() {
   const [movies, setMovies] = useState<MoviesListProps | []>([]);
 
-  const handleTerm = (str: string) => {
-    console.log(str)
+  // useEffect(() => {
+  //   console.log(movies);
+  // }, [movies])
+
+  const handleTerm = (term: string) => {
+    if (term !== "") {
+      axios
+        .get(`http://www.omdbapi.com/?s=${term}&apikey=a327f185`)
+        .then((res: AxiosResponse) => {
+          const fetchedMovies = res.data as MoviesListProps;
+          setMovies(fetchedMovies);
+        })
+        .catch((error) => {
+          console.log(error)
+        });
+    }
   }
 
   return <div>The Shoppies
     <Searchbar handleTerm={handleTerm} />
+    <Results movies={movies} />
   </div>
 } 

@@ -11,7 +11,7 @@ export const Searchbar = (props: SearchbarProps) => {
 
   useEffect(() => {
     handleTerm(term);
-  }, [term, handleTerm])
+  }, [term])
 
   const handleChange = (e: React.FormEvent<HTMLInputElement>): void => {
     setTerm(e.currentTarget.value);
