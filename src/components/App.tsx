@@ -15,18 +15,23 @@ export interface MoviesListProps extends Array<MovieProps> { }
 
 export default function App() {
   const [movies, setMovies] = useState<MoviesListProps | []>([]);
-
-  // useEffect(() => {
-  //   console.log(movies);
-  // }, [movies])
+  const [term, setTerm] = useState<string>("")
+  const [error, setError] = useState<string | null>(null)
 
   const handleTerm = (term: string) => {
+    setTerm(term);
     if (term !== "") {
       axios
         .get(`http://www.omdbapi.com/?s=${term}&apikey=a327f185`)
         .then((res: AxiosResponse) => {
-          const fetchedMovies = res.data as MoviesListProps;
-          setMovies(fetchedMovies);
+          if (res.data.Error) {
+            setError(res.data.Error);
+            setMovies([]);
+          } else {
+            console.log(res.data.Search);
+            setMovies(res.data.Search);
+            setError(null);
+          }
         })
         .catch((error) => {
           console.log(error)
@@ -36,6 +41,6 @@ export default function App() {
 
   return <div>The Shoppies
     <Searchbar handleTerm={handleTerm} />
-    <Results movies={movies} />
+    <Results movies={movies} term={term} error={error} />
   </div>
 } 
