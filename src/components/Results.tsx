@@ -26,7 +26,7 @@ export const Results = (props: ResultsProps) => {
       {(error && term !== "") ? error : (movies as any[]).map((movie) => {
         return <li key={movie.imdbID}>
           {`${movie.Title} (${movie.Year})`}
-          <button type="button" className="btn btn-sm btn-primary" onClick={() => toggleNomintate(movie)}>Nominate</button>
+          <button type="button" className="btn btn-sm btn-primary" onClick={() => toggleNomintate(movie)} disabled={nominated.includes(movie)}>Nominate</button>
         </li>
       })}
     </div>
