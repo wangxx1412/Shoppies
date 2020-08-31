@@ -8,11 +8,15 @@ type ResultsProps = {
 }
 
 export const Results = (props: ResultsProps) => {
-  const [nominated, setNominated] = useState<MoviesListProps | []>([])
+  const [nominated, setNominated] = useState<MoviesListProps>([])
   const { movies, term, error } = props;
 
   const toggleNomintate = (movie: MovieProps) => {
-    setNominated([...nominated, movie]);
+    if ((nominated).includes(movie)) {
+      setNominated(nominated.filter(el => el.imdbID !== movie.imdbID))
+    } else {
+      setNominated([...nominated, movie]);
+    }
   }
 
   return <div className="row">
@@ -31,7 +35,7 @@ export const Results = (props: ResultsProps) => {
       {(nominated as any[]).map((movie) => {
         return <li key={movie.imdbID}>
           {`${movie.Title} (${movie.Year})`}
-          <button type="button" className="btn btn-sm btn-primary">Remove</button>
+          <button type="button" className="btn btn-sm btn-primary" onClick={() => toggleNomintate(movie)}>Remove</button>
         </li>
       })}
     </div>
