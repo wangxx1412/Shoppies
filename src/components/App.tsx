@@ -20,26 +20,23 @@ export default function App() {
 
   const handleTerm = (term: string) => {
     setTerm(term);
-    if (term !== "") {
-      axios
-        .get(`http://www.omdbapi.com/?s=${term}&apikey=a327f185`)
-        .then((res: AxiosResponse) => {
-          if (res.data.Error) {
-            setError(res.data.Error);
-            setMovies([]);
-          } else {
-            console.log(res.data.Search);
-            setMovies(res.data.Search);
-            setError(null);
-          }
-        })
-        .catch((error) => {
-          console.log(error)
-        });
-    }
+    axios
+      .get(`http://www.omdbapi.com/?s=${term}&apikey=a327f185`)
+      .then((res: AxiosResponse) => {
+        if (res.data.Error) {
+          setError(res.data.Error);
+          setMovies([]);
+        } else {
+          setMovies(res.data.Search);
+          setError(null);
+        }
+      })
+      .catch((error) => {
+        console.log(error)
+      });
   }
 
-  return <div>The Shoppies
+  return <div className="container">The Shoppies
     <Searchbar handleTerm={handleTerm} />
     <Results movies={movies} term={term} error={error} />
   </div>

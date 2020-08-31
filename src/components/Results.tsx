@@ -11,11 +11,10 @@ export const Results = (props: ResultsProps) => {
   const { movies, term, error } = props;
 
   return <div>
-    <h2>Results for "{term}"</h2>
-    {error ? error : (movies as any[]).map((movie) => {
-      return <li>{movie.Title}</li>
+    {term === "" ? <h3>Results:</h3> : <h3>Results for "{term}":</h3>}
+
+    {(error && term !== "") ? error : (movies as any[]).map((movie) => {
+      return <li key={movie.imdbID}>{`${movie.Title} (${movie.Year})`}</li>
     })}
-
-
   </div>
 } 
