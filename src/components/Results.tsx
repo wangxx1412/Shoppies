@@ -1,5 +1,5 @@
-import React from 'react';
-import { MoviesListProps } from "./App"
+import React, { useState } from 'react';
+import { MoviesListProps, MovieProps } from "./App"
 
 type ResultsProps = {
   movies: MoviesListProps | [];
@@ -8,13 +8,33 @@ type ResultsProps = {
 }
 
 export const Results = (props: ResultsProps) => {
+  const [nominated, setNominated] = useState<MoviesListProps | []>([])
   const { movies, term, error } = props;
 
-  return <div>
-    {term === "" ? <h3>Results:</h3> : <h3>Results for "{term}":</h3>}
+  const toggleNomintate = (movie: MovieProps) => {
+    setNominated([...nominated, movie]);
+  }
 
-    {(error && term !== "") ? error : (movies as any[]).map((movie) => {
-      return <li key={movie.imdbID}>{`${movie.Title} (${movie.Year})`}</li>
-    })}
+  return <div className="row">
+    <div className="col-sm">
+      {term === "" ? <h3>Results:</h3> : <h3>Results for "{term}":</h3>}
+
+      {(error && term !== "") ? error : (movies as any[]).map((movie) => {
+        return <li key={movie.imdbID}>
+          {`${movie.Title} (${movie.Year})`}
+          <button type="button" className="btn btn-sm btn-primary" onClick={() => toggleNomintate(movie)}>Nominate</button>
+        </li>
+      })}
+    </div>
+    <div className="col-sm">
+      <h3>Nominations:</h3>
+      {(nominated as any[]).map((movie) => {
+        return <li key={movie.imdbID}>
+          {`${movie.Title} (${movie.Year})`}
+          <button type="button" className="btn btn-sm btn-primary">Remove</button>
+        </li>
+      })}
+    </div>
+
   </div>
 } 
