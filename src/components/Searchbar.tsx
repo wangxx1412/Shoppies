@@ -7,9 +7,8 @@ type SearchbarProps = {
 export const Searchbar = (props: SearchbarProps) => {
   const [term, setTerm] = useState<string>("");
 
-  const { handleTerm } = props;
-
   useEffect(() => {
+    const { handleTerm } = props;
     handleTerm(term);
   }, [term])
 
@@ -17,7 +16,10 @@ export const Searchbar = (props: SearchbarProps) => {
     setTerm(e.currentTarget.value);
   }
 
-  return <div>
-    <input type="text" value={term} onChange={handleChange} />
+  return <div className="card">
+    <div className="card-body">
+      <h5 className="card-title">Movie title</h5>
+      <input className="form-control form-control-lg" placeholder="Search..." type="text" value={term} onChange={handleChange} />
+    </div>
   </div>
 } 

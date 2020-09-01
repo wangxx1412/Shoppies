@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios, { AxiosResponse } from 'axios';
 import { Searchbar } from './Searchbar';
 import { Results } from "./Results";
@@ -36,7 +36,8 @@ export default function App() {
       });
   }
 
-  return <div className="container">The Shoppies
+  return <div className="container">
+    <h1>The Shoppies</h1>
     <Searchbar handleTerm={handleTerm} />
     <Results movies={movies} term={term} error={error} />
   </div>

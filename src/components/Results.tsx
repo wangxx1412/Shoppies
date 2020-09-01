@@ -39,6 +39,5 @@ export const Results = (props: ResultsProps) => {
         </li>
       })}
     </div>
-
   </div>
 } 
