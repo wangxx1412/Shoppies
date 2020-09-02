@@ -16,10 +16,8 @@ export const Searchbar = (props: SearchbarProps) => {
     setTerm(e.currentTarget.value);
   }
 
-  return <div className="card">
-    <div className="card-body">
-      <h5 className="card-title">Movie title</h5>
-      <input className="form-control form-control-lg" placeholder="Search..." type="text" value={term} onChange={handleChange} />
-    </div>
+  return <div className="searchbar container mt-sm-5">
+    <h5>Movie title</h5>
+    <input className="form-control form-control-lg shadow p-3 mb-5 bg-white rounded" placeholder="Search..." type="text" value={term} onChange={handleChange} />
   </div>
 } 

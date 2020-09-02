@@ -12,6 +12,7 @@
     "@types/react-dom": "^16.9.8",
     "axios": "^0.20.0",
     "bootstrap": "^4.5.2",
+    "bootstrap-icons": "^1.0.0",
     "dotenv": "^8.2.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",

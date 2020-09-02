@@ -19,25 +19,30 @@ export const Results = (props: ResultsProps) => {
     }
   }
 
-  return <div className="row">
-    <div className="col-sm">
-      {term === "" ? <h3>Results:</h3> : <h3>Results for "{term}":</h3>}
-
-      {(error && term !== "") ? error : (movies as any[]).map((movie) => {
-        return <li key={movie.imdbID}>
-          {`${movie.Title} (${movie.Year})`}
-          <button type="button" className="btn btn-sm btn-primary" onClick={() => toggleNomintate(movie)} disabled={nominated.includes(movie)}>Nominate</button>
-        </li>
-      })}
-    </div>
-    <div className="col-sm">
-      <h3>Nominations:</h3>
-      {(nominated as any[]).map((movie) => {
-        return <li key={movie.imdbID}>
-          {`${movie.Title} (${movie.Year})`}
-          <button type="button" className="btn btn-sm btn-primary" onClick={() => toggleNomintate(movie)}>Remove</button>
-        </li>
-      })}
+  return <div className="container">
+    <div className="row results mt-md-4">
+      <div className="col-sm">
+        {term === "" ? <h3>Results:</h3> : <h3>Results for "{term}":</h3>}
+        <ul className="list-group list-group-flush">
+          {(error && term !== "") ? error : (movies as any[]).map((movie) => {
+            return <li key={movie.imdbID} className="list-group-item">
+              {`${movie.Title} (${movie.Year})`}
+              <button type="button" className="btn btn-sm btn-outline-success ml-sm-2" onClick={() => toggleNomintate(movie)} disabled={nominated.includes(movie)}>Nominate</button>
+            </li>
+          })}
+        </ul>
+      </div>
+      <div className="col-sm">
+        <h3>Nominations:</h3>
+        <ul className="list-group list-group-flush">
+          {(nominated as any[]).map((movie) => {
+            return <li key={movie.imdbID} className="list-group-item">
+              {`${movie.Title} (${movie.Year})`}
+              <button type="button" className="btn btn-sm btn-outline-danger ml-sm-2" onClick={() => toggleNomintate(movie)}>Remove</button>
+            </li>
+          })}
+        </ul>
+      </div>
     </div>
   </div>
 } 

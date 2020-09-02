@@ -1,0 +1,14 @@
+.hero{
+  background-color: #618685;
+  height: 45vh;
+}
+.title{
+  display: flex;
+  justify-content: center;
+}
+h1, h5{
+  color:#fff
+}
+h3{
+  color:#618685;
+}

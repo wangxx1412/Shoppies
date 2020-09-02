@@ -36,9 +36,11 @@ export default function App() {
       });
   }
 
-  return <div className="container">
-    <h1>The Shoppies</h1>
-    <Searchbar handleTerm={handleTerm} />
+  return <div className="app">
+    <div className="hero">
+      <h1 className="title font-italic pt-sm-5">The Shoppies</h1>
+      <Searchbar handleTerm={handleTerm} />
+    </div>
     <Results movies={movies} term={term} error={error} />
   </div>
 } 
