@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MoviesListProps, MovieProps } from "./App"
 
 type ResultsProps = {
@@ -10,6 +10,15 @@ type ResultsProps = {
 export const Results = (props: ResultsProps) => {
   const [nominated, setNominated] = useState<MoviesListProps>([])
   const { movies, term, error } = props;
+
+  useEffect(() => {
+    const nominations = JSON.parse(localStorage.getItem('nominations') as string);
+    setNominated(nominations);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('nominations', JSON.stringify(nominated));
+  }, [nominated]);
 
   const toggleNomintate = (movie: MovieProps) => {
     if ((nominated).includes(movie)) {
