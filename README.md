@@ -9,11 +9,6 @@ Clone this repo and Install dependencies with:
 ```sh
 npm install
 ```
-Create .env file in root folder and add you API_KEY:
-
-```sh
-API_KEY=your_api_key
-```
 
 ## Run
 
@@ -28,4 +23,8 @@ npm start
 - Nominate movies to nomination list
 - Remove nominated movies from nomination list
 - Save nomination movies in localStorage 
+
+## Comments
+
+- Need to set up env for apikey, dotenv doesn't work for client side
 
