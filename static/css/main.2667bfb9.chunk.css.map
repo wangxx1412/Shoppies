@@ -1,0 +1,1 @@
+{"version":3,"sources":["index.css"],"names":[],"mappings":"AAAA,MACE,wBAAyB,CACzB,WACF,CACA,OACE,YAAa,CACb,sBACF,CACA,MACE,UACF,CACA,GACE,aACF","file":"main.2667bfb9.chunk.css","sourcesContent":[".hero{\n  background-color: #618685;\n  height: 45vh;\n}\n.title{\n  display: flex;\n  justify-content: center;\n}\nh1, h5{\n  color:#fff\n}\nh3{\n  color:#618685;\n}"]}
