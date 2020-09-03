@@ -2,6 +2,8 @@
 
 Shoppies is an tiny app for fetching movies from OMDb based on React and TypeScript.
 
+https://shoppiesxxw.herokuapp.com/
+
 ## Setup
 
 Clone this repo and Install dependencies with:
