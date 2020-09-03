@@ -11,15 +11,18 @@ export const Results = (props: ResultsProps) => {
   const [nominated, setNominated] = useState<MoviesListProps>([])
   const { movies, term, error } = props;
 
+  // Initial the nomination list from localStorage
   useEffect(() => {
     const nominations = JSON.parse(localStorage.getItem('nominations') as string);
     setNominated(nominations);
   }, []);
 
+  // Save nomination list in localStorage
   useEffect(() => {
     localStorage.setItem('nominations', JSON.stringify(nominated));
   }, [nominated]);
 
+  // Nominate movie or remove nomination movie 
   const toggleNomintate = (movie: MovieProps) => {
     if ((nominated).includes(movie)) {
       setNominated(nominated.filter(el => el.imdbID !== movie.imdbID))

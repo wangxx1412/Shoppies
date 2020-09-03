@@ -3,6 +3,8 @@ import axios, { AxiosResponse } from 'axios';
 import { Searchbar } from './Searchbar';
 import { Results } from "./Results";
 
+require('dotenv').config();
+
 export interface MovieProps {
   Title: string;
   Year: string;
@@ -18,10 +20,11 @@ export default function App() {
   const [term, setTerm] = useState<string>("")
   const [error, setError] = useState<string | null>(null)
 
+  // Get data from API  
   const handleTerm = (term: string) => {
     setTerm(term);
     axios
-      .get(`http://www.omdbapi.com/?s=${term}&apikey=a327f185`)
+      .get(`http://www.omdbapi.com/?s=${term}&apikey=${process.env.API_KEY}`)
       .then((res: AxiosResponse) => {
         if (res.data.Error) {
           setError(res.data.Error);
