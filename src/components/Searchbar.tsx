@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 type SearchbarProps = {
   handleTerm: (term: string) => void;
@@ -7,13 +7,9 @@ type SearchbarProps = {
 export const Searchbar = (props: SearchbarProps) => {
   const [term, setTerm] = useState<string>("");
 
-  useEffect(() => {
-    const { handleTerm } = props;
-    handleTerm(term);
-  }, [term])
-
   const handleChange = (e: React.FormEvent<HTMLInputElement>): void => {
     setTerm(e.currentTarget.value);
+    props.handleTerm(e.currentTarget.value);
   }
 
   return <div className="searchbar container mt-sm-5">
