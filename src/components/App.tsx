@@ -24,7 +24,7 @@ export default function App() {
   const handleTerm = (term: string) => {
     setTerm(term);
     axios
-      .get(`http://www.omdbapi.com/?s=${term}&apikey=${process.env.API_KEY}`)
+      .get(`https://www.omdbapi.com/?s=${term}&apikey=${process.env.API_KEY}`)
       .then((res: AxiosResponse) => {
         if (res.data.Error) {
           setError(res.data.Error);
